@@ -2,7 +2,15 @@
  "cells": [
   {
    "cell_type": "code",
+<<<<<<< HEAD:Code/P01Part1.ipynb
+<<<<<<< HEAD:Code/P01Part1.ipynb
    "execution_count": 31,
+=======
+   "execution_count": 207,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
+=======
+   "execution_count": 207,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
    "metadata": {},
    "outputs": [],
    "source": [
@@ -111,7 +119,15 @@
   },
   {
    "cell_type": "code",
+<<<<<<< HEAD:Code/P01Part1.ipynb
+<<<<<<< HEAD:Code/P01Part1.ipynb
    "execution_count": 32,
+=======
+   "execution_count": 217,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
+=======
+   "execution_count": 217,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
    "metadata": {},
    "outputs": [],
    "source": [
@@ -122,6 +138,8 @@
     "        filepath = '../Data/kNN/testing/neg/' + filename\n",
     "        test_neg_feat=list(feature_extrction(filepath, voc))\n",
     "        test_neg_feat.append(0)\n",
+<<<<<<< HEAD:Code/P01Part1.ipynb
+<<<<<<< HEAD:Code/P01Part1.ipynb
     "        test_neg_all.append(test_neg_feat)"
    ]
   },
@@ -131,12 +149,22 @@
    "metadata": {},
    "outputs": [],
    "source": [
+=======
+    "        test_neg_all.append(test_neg_feat)\n",
+    "\n",
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
+=======
+    "        test_neg_all.append(test_neg_feat)\n",
+    "\n",
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
     "test_pos_all=[]\n",
     "for filename in os.listdir('../Data/kNN/testing/pos/'):\n",
     "    if filename.endswith(\".txt\"):\n",
     "        filepath = '../Data/kNN/testing/pos/' + filename\n",
     "        test_pos_feat=list(feature_extrction(filepath, voc))\n",
     "        test_pos_feat.append(1)\n",
+<<<<<<< HEAD:Code/P01Part1.ipynb
+<<<<<<< HEAD:Code/P01Part1.ipynb
     "        test_pos_all.append(test_pos_feat)"
    ]
   },
@@ -156,6 +184,20 @@
    "metadata": {},
    "outputs": [],
    "source": [
+=======
+    "        test_pos_all.append(test_pos_feat)\n",
+    "\n",
+    "# test_feat is combiend with 10 test negative reviews feature plus 10 positive reviews feature.        \n",
+    "test_all=test_neg_all+test_pos_all\n",
+    "\n",
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
+=======
+    "        test_pos_all.append(test_pos_feat)\n",
+    "\n",
+    "# test_feat is combiend with 10 test negative reviews feature plus 10 positive reviews feature.        \n",
+    "test_all=test_neg_all+test_pos_all\n",
+    "\n",
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
     "#get training txt files feature\n",
     "train_neg_all=[]\n",
     "for filename in os.listdir('../Data/kNN/training/neg/'):\n",
@@ -221,7 +263,15 @@
   },
   {
    "cell_type": "code",
+<<<<<<< HEAD:Code/P01Part1.ipynb
+<<<<<<< HEAD:Code/P01Part1.ipynb
    "execution_count": 67,
+=======
+   "execution_count": 227,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
+=======
+   "execution_count": 227,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
    "metadata": {},
    "outputs": [
     {
@@ -231,6 +281,14 @@
        "(0.5, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])"
       ]
      },
+<<<<<<< HEAD:Code/P01Part1.ipynb
+<<<<<<< HEAD:Code/P01Part1.ipynb
+=======
+     "execution_count": 227,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
+=======
+     "execution_count": 227,
+>>>>>>> parent of 6d4223b... 111:Code/P01Part1_train.ipynb
      "metadata": {},
      "execution_count": 67
     }
