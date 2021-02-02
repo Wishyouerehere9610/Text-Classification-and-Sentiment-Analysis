@@ -23,6 +23,8 @@ stopword = ['ourselves', 'hers', 'between', 'yourself', 'but', 'again', 'there',
 'theirs', 'my', 'against', 'a', 'by', 'doing', 'it', 'how', 
 'further', 'was', 'here', 'than','shes','']
 
+threshold = 3
+
 #Function template function voc = buildVoc(folder, voc);
 #Inputs:
 #a folder is a folder path, which contains training data
@@ -50,7 +52,6 @@ def buildVoc(folderpath,voc):
             removed_review = ' '.join(map(str,stop_result))
             parse_review=removed_review.split()
             c = Counter(parse_review)
-            threshold = 3
             # result=[]
             for i in c.items():
                 if i[1] > threshold:
@@ -162,32 +163,33 @@ def cosDistance(row1, row2):
     return res
 
 # Make a classification prediction with neighbors
-def predict_classification(train, test_row, num_neighbors):
-    distances = list()
-    for train_row in train:
+def classification(train_all, test_row, num_of_neighbors):
+    n = []
+    dist = []
+    output=[]
+    for feature in train_all:
         # USE DIFFERENT DISTANCE
-
-        dist = commonWords(test_row, train_row)
-
-        distances.append((train_row, dist))
-    distances.sort(key = lambda tup: tup[1])
-    neighbors = list()
-    for i in range(num_neighbors):
-        neighbors.append(distances[i][0]) 
-    output_values = [row[-1] for row in neighbors]
-    prediction = max(set(output_values), key=output_values.count)
-    return prediction
+        d = commonWords(test_row, feature)
+        dist.append((feature, d))
+    dist.sort(key = lambda tup: tup[1])
+    
+    for i in range(num_of_neighbors):
+        n.append(dist[i][0]) 
+    for row in n:
+        output.append(row[-1])
+    result = max(set(output), key=output.count)
+    return result
 
 def acc(train_all, test_all, number_of_neighboor):
     count = 0
     result = []
     for i in range(len(test_all)):
-        prediction = predict_classification(train_all, test_all[i], number_of_neighboor)
+        prediction = classification(train_all, test_all[i], number_of_neighboor)
         result.append(prediction)
         if prediction==test_all[i][-1]:
             count+=1
-    acc=count / len(test_all)
+    acc = count / len(test_all)
     return acc, result
 
-print("")
-print(acc(train_all,test_all, 14))
+print("The threshold we choose is 3")
+print(acc(train_all,test_all, 4))
