@@ -55,4 +55,4 @@ def sentimentAnalysis(filename):
 
     return score
 
-sentimentAnalysis("../Data/SA/neg/10.txt")
+# sentimentAnalysis("../Data/SA/neg/10.txt")

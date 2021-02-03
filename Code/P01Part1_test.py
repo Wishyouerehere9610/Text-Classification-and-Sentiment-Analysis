@@ -5,7 +5,6 @@ import numpy as np
 import sys
 from collections import Counter
 from scipy import spatial
-from sklearn.feature_extraction.text import CountVectorizer
 
 stopword = ['ourselves', 'hers', 'between', 'yourself', 'but', 'again', 'there', 
 'about', 'once', 'during', 'out', 'very', 'having', 'with', 'they', 'own', 
@@ -165,16 +164,20 @@ def cosDistance(row1, row2):
     return res
 
 # Make a classification prediction with neighbors
-def classification(train_all, test_row, num_of_neighbors):
+def classification(train_all, test_row, num_of_neighbors, distanceMetrics):
     n = []
     dist = []
     output=[]
     for feature in train_all:
         
-        
         # USE DIFFERENT DISTANCE METRIC FUNCTION ABOVE
-        d = commonWords(test_row, feature)
-        
+        if distanceMetrics == "SSD":
+            d = SSD(test_row, feature)
+        elif distanceMetrics == "commonWords":
+            d = commonWords(test_row, feature)
+        elif distanceMetrics == "codDistance":
+            d = cosDistance(test_row, feature)
+
         
         dist.append((feature, d))
     dist.sort(key = lambda tup: tup[1])
@@ -186,11 +189,11 @@ def classification(train_all, test_row, num_of_neighbors):
     result = max(set(output), key=output.count)
     return result
 
-def acc(train_all, test_all, number_of_neighboor):
+def acc(train_all, test_all, number_of_neighboor, distanceMetrics):
     count = 0
     result = []
     for i in range(len(test_all)):
-        prediction = classification(train_all, test_all[i], number_of_neighboor)
+        prediction = classification(train_all, test_all[i], number_of_neighboor, distanceMetrics)
         result.append(prediction)
         if prediction == test_all[i][-1]:
             count+=1
@@ -199,4 +202,5 @@ def acc(train_all, test_all, number_of_neighboor):
 
 print("The threshold we choose is: 3")
 print("The distance metrics we use is: number of common words")
-print(acc(train_all,test_all, 11))
+#YOU CAN CHANGE THE DIFFERENT METRICS 
+print(acc(train_all, test_all, 9, "commonWords"))

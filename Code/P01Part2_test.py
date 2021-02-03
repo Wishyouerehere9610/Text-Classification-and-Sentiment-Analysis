@@ -1,12 +1,12 @@
 import os
 import matplotlib.pyplot as plt
 from sentimentAnalysis import sentimentAnalysis
-posFolder = '../Data/SA/pos';
-negFolder = '../Data/SA/neg';
+posFolder = '../Data/SA/pos'
+negFolder = '../Data/SA/neg'
 
 totalNeg = 0
 totalPos = 0
-correctNeg = 0;
+correctNeg = 0
 correctPos = 0
 
 posfiles = []
