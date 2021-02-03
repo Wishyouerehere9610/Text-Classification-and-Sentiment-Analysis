@@ -150,8 +150,10 @@ def commonWords(row1, row2):
     for i, j in zip(row1, row2):
         if i > 0 and j > 0:
             distance += 1
+            
     # row3 = set(row1) & set(row2)
     # row4 = sorted(row3, key = lambda k : row1.index(k))
+    
     if distance == 0:
         distance = sys.maxsize
     else:
@@ -168,8 +170,12 @@ def classification(train_all, test_row, num_of_neighbors):
     dist = []
     output=[]
     for feature in train_all:
-        # USE DIFFERENT DISTANCE
+        
+        
+        # USE DIFFERENT DISTANCE METRIC FUNCTION ABOVE
         d = commonWords(test_row, feature)
+        
+        
         dist.append((feature, d))
     dist.sort(key = lambda tup: tup[1])
     
@@ -186,10 +192,10 @@ def acc(train_all, test_all, number_of_neighboor):
     for i in range(len(test_all)):
         prediction = classification(train_all, test_all[i], number_of_neighboor)
         result.append(prediction)
-        if prediction==test_all[i][-1]:
+        if prediction == test_all[i][-1]:
             count+=1
     acc = count / len(test_all)
     return acc, result
 
 print("The threshold we choose is 3")
-print(acc(train_all,test_all, 4))
+print(acc(train_all,test_all, 11))
