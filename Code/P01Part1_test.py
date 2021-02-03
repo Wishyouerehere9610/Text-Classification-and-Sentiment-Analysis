@@ -198,10 +198,24 @@ def acc(train_all, test_all, number_of_neighboor, distanceMetrics):
     acc = count / len(test_all)
     return acc, result
 
-print("The threshold we choose is: 3")
-
-print("Input distance_metric for KNN (choices:SSD,commonWords,cosDistance)")
+print("The threshold that we choose is: 3")
+print("We will use all testing data to do the classification task, there will be 20 results after classification,"
+      "first 10 results should be negative(0), then next 10 should be positive(1).")
+print("Please input the distance metric type for KNN (choices:SSD,commonWords,cosDistance):")
 distance_metric=input()
-print("Input K value:")
+print("Please input the K value:")
 k=input()
-print("The accuracy for input",distance_metric,"is:",acc(train_all,test_all,int(k),distance_metric))
+print("The accuracy and classification result for",distance_metric,"with k =",k,"is:",acc(train_all,test_all,int(k),distance_metric))
+print('------------------------------------------------------------------------------------------')
+print('The following function take single text filepath as input and return classified result')
+print("Please choose distance_type (choices:SSD,commonWords,cosDistance):")
+distance_type=input()
+print('Please choose k value:')
+number_of_neighboor=input()
+print('Please input the text file path:')
+
+filepath=input()
+test_feature=feature_extrction(filepath,voc)
+result = classification(train_all, test_feature, int(number_of_neighboor), distance_type)
+print('Classification result:',result)
+
