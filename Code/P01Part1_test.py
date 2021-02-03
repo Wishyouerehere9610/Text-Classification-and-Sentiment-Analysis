@@ -197,5 +197,6 @@ def acc(train_all, test_all, number_of_neighboor):
     acc = count / len(test_all)
     return acc, result
 
-print("The threshold we choose is 3")
+print("The threshold we choose is: 3")
+print("The distance metrics we use is: number of common words")
 print(acc(train_all,test_all, 11))
