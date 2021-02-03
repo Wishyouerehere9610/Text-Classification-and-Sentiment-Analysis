@@ -169,17 +169,15 @@ def classification(train_all, test_row, num_of_neighbors, distanceMetrics):
     dist = []
     output=[]
     for feature in train_all:
-        
         # USE DIFFERENT DISTANCE METRIC FUNCTION ABOVE
         if distanceMetrics == "SSD":
             d = SSD(test_row, feature)
         elif distanceMetrics == "commonWords":
             d = commonWords(test_row, feature)
-        elif distanceMetrics == "codDistance":
+        elif distanceMetrics == "cosDistance":
             d = cosDistance(test_row, feature)
-
-        
         dist.append((feature, d))
+
     dist.sort(key = lambda tup: tup[1])
     
     for i in range(num_of_neighbors):
@@ -201,6 +199,9 @@ def acc(train_all, test_all, number_of_neighboor, distanceMetrics):
     return acc, result
 
 print("The threshold we choose is: 3")
-print("The distance metrics we use is: number of common words")
-#YOU CAN CHANGE THE DIFFERENT METRICS 
-print(acc(train_all, test_all, 9, "commonWords"))
+
+print("Input distance_metric for KNN (choices:SSD,commonWords,cosDistance)")
+distance_metric=input()
+print("Input K value:")
+k=input()
+print("The accuracy for input",distance_metric,"is:",acc(train_all,test_all,int(k),distance_metric))
